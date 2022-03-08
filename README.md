@@ -1,4 +1,4 @@
 # Experiment
 
-### Organization: {{meta_organization}}
-### Product: {{meta_product}}
+### Organization: NEDRA DIGITAL
+### Product: NEW-PROD
