@@ -1,4 +1,4 @@
 # Experiment
 
-### Organization: {{organization}}
-### Product: {{product}}
+### Organization: {{meta_organization}}
+### Product: {{meta_product}}
