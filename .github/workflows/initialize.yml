@@ -42,16 +42,6 @@ jobs:
           tokenSuffix: '}}'
           files: '["**/*.md", "**/*.props"]'
           
-      - name: plantuml
-        id: plantuml
-        uses: grassedge/generate-plantuml-action@v1.5
-        with:
-          path: docs/design.puml
-          message: "Render PlantUML files"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
       # Фиксация локальных изменений.
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
-          
