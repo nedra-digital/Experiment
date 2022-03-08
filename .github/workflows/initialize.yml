@@ -31,3 +31,11 @@ jobs:
           
       - name: Show
         run: echo "${{ env.meta_organization }}"
+      
+      - name: Replace tokens
+        uses: cschleiden/replace-tokens@v1.1
+        with:
+          tokenPrefix: '{{'
+          tokenSuffix: '}}'
+          files: '["**/*.md"]'
+          
