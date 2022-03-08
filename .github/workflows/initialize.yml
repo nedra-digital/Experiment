@@ -39,3 +39,6 @@ jobs:
           tokenSuffix: '}}'
           files: '["**/*.md"]'
           
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+          
