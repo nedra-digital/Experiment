@@ -1,10 +1,12 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Repository Init
 
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
+  # Вероятно, стоит сменить триггер на https://github.com/marketplace/actions/init-action,
+  # от есть запускать этот сценарий только один раз, при клонировании репозитория.
   push:
     branches: [ master ]
   
@@ -23,22 +25,24 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      # В файле metadata.json хранятся атрибуты организации, список авторов, имя продукта и другие метаданные.
+      # Чтение атрибутов json в переменные окружения с именами, аналогичными именам атрибутов.
       - name: JSON to variables
         uses: antifree/json-to-variables@v1.0.1
         with:
           filename: metadata.json
           prefix: meta
           
-      - name: Show
-        run: echo "${{ env.meta_organization }}"
-      
+      # Поиск токенов вида {{meta_organization}} во всех файлах MD и props,
+      # Замена на переменные окружения с такими же именами, которые были созданы предыдущей командой.
       - name: Replace tokens
         uses: cschleiden/replace-tokens@v1.1
         with:
           tokenPrefix: '{{'
           tokenSuffix: '}}'
-          files: '["**/*.md"]'
+          files: '["**/*.md", "**/*.props"]'
           
+      # Фиксация локальных изменений.
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
           
